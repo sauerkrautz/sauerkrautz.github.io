@@ -1,24 +1,31 @@
 import "./App.css";
 import Form from "./components/Form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TodoList from "./components/TodoList";
 
 function App() {
   const [todo, setTodo] = useState([]);
 
+  useEffect(() => {
+    const todos = JSON.parse(localStorage.getItem("local"));
+    console.table(localStorage);
+    if (todos) {
+      setTodo(todos);
+    }
+  }, []);
+
   const addTodo = (todos) => {
+    localStorage.setItem("local", JSON.stringify([todos, ...todo]));
     console.table(localStorage);
     setTodo([todos, ...todo]);
   };
 
   const removeTodo = (id) => {
-    localStorage.removeItem(id);
-    console.log(localStorage);
-    setTodo(
-      todo.filter((todo) => {
-        return todo.id !== id;
-      })
-    );
+    const filtered = todo.filter((todo) => {
+      return todo.id !== id;
+    });
+    localStorage.setItem("local", JSON.stringify(filtered));
+    return setTodo(filtered);
   };
 
   return (

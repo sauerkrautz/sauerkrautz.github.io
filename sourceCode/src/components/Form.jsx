@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { motion } from "framer-motion";
 
 const Form = ({ todo, addTodo }) => {
   const [input, setInput] = useState("");
@@ -33,7 +32,7 @@ const Form = ({ todo, addTodo }) => {
 
   return (
     <form onSubmit={handleSubmit} className="flex gap-4 mt-24">
-      <motion.input
+      <input
         type="text"
         value={input}
         ref={INPUT}
