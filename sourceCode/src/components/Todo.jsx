@@ -16,12 +16,14 @@ const Todo = ({ text, id, completeStatus, completeTask, removeTodo }) => {
     completeTask(id);
   };
 
+  const d = new Date().toDateString;
+
   return (
     <div
       key={id}
-      className="bg-white w-full min-h-[10rem] p-2 text-md rounded-lg flex flex-col gap-4 justify-between items-baseline"
+      className="relative bg-white w-full min-h-[10rem] p-2 text-md rounded-lg flex flex-col gap-4 justify-between items-baseline"
       style={{ backgroundColor: completeStatus ? "green" : "white" }}
-      onClick={handleComplete}
+      onDoubleClick={handleComplete}
     >
       <p
         className="break-words text-left"
@@ -31,8 +33,9 @@ const Todo = ({ text, id, completeStatus, completeTask, removeTodo }) => {
       </p>
       <div className="w-full flex justify-between">
         <div></div>
+
         <button
-          className=" text-red-500 tracking-wider p-1 rounded-lg text-md font-poppins font-bold "
+          className="text-red-500 tracking-wider p-1 rounded-lg text-md font-poppins font-bold"
           onClick={handleRemove}
         >
           <FontAwesomeIcon icon={faTrash} />

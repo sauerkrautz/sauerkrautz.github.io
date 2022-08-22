@@ -2,6 +2,7 @@ import "./App.css";
 import Form from "./components/Form";
 import { useEffect, useState } from "react";
 import TodoList from "./components/TodoList";
+import Test from "./components/Test";
 
 function App() {
   const [todo, setTodo] = useState([]);
@@ -50,7 +51,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col gap-8 bg-back">
+    <div className="min-h-screen w-full flex flex-col gap-8 bg-back ">
       <Form todo={todo} setTodo={setTodo} addTodo={addTodo} />
       <TodoList
         todo={todo}
@@ -58,6 +59,7 @@ function App() {
         removeTodo={removeTodo}
         completeTask={completeTask}
       />
+      {/* <Test /> */}
     </div>
   );
 }
