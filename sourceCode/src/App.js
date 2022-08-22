@@ -14,6 +14,10 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    console.table(todo);
+  }, [todo]);
+
   const addTodo = (todos) => {
     localStorage.setItem("local", JSON.stringify([todos, ...todo]));
     console.table(localStorage);
@@ -28,12 +32,32 @@ function App() {
     return setTodo(filtered);
   };
 
+  const completeTask = (id) => {
+    const mappedTodo = todo.map((e) => {
+      if (e.id === id) {
+        if (e.completed === false) {
+          e.completed = true;
+        } else if (e.completed === true) {
+          e.completed = false;
+        }
+      }
+
+      return e;
+    });
+
+    setTodo(mappedTodo);
+    return localStorage.setItem("local", JSON.stringify(mappedTodo));
+  };
+
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-center bg-back">
-      <div className="w-4/5 md:w-3/5 lg:w-2/5 flex flex-col justify-center rounded-lg items-center gap-8 bg-main shadow-2xl pb-12 mx-12">
-        <Form todo={todo} setTodo={setTodo} addTodo={addTodo} />
-        <TodoList todo={todo} setTodo={setTodo} removeTodo={removeTodo} />
-      </div>
+    <div className="min-h-screen w-full flex flex-col gap-8 bg-back">
+      <Form todo={todo} setTodo={setTodo} addTodo={addTodo} />
+      <TodoList
+        todo={todo}
+        setTodo={setTodo}
+        removeTodo={removeTodo}
+        completeTask={completeTask}
+      />
     </div>
   );
 }

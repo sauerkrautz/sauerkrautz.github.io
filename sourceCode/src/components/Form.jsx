@@ -20,6 +20,7 @@ const Form = ({ todo, addTodo }) => {
     const todos = {
       id: uuidv4(),
       text: input,
+      completed: false,
     };
 
     if (/[\S\s]+[\S]+/.test(input)) {
@@ -31,16 +32,18 @@ const Form = ({ todo, addTodo }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-4 mt-24">
-      <input
-        type="text"
-        value={input}
-        ref={INPUT}
-        onChange={handleInput}
-        placeholder="add todo"
-        className="rounded-lg p-2 focus:scale-105 transition-transform"
-      />
-    </form>
+    <div className="w-full flex justify-center items-center">
+      <form onSubmit={handleSubmit} className="flex gap-4 mt-24">
+        <input
+          type="text"
+          value={input}
+          ref={INPUT}
+          onChange={handleInput}
+          placeholder="add todo"
+          className="rounded-lg p-2 focus:scale-105 transition-transform"
+        />
+      </form>
+    </div>
   );
 };
 
