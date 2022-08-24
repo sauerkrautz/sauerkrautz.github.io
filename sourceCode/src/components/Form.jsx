@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 const Form = ({ todo, addTodo }) => {
+  const d = new Date();
   const [input, setInput] = useState("");
 
   const handleInput = (e) => {
@@ -17,10 +18,13 @@ const Form = ({ todo, addTodo }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const date = `${d.getHours()}:${d.getMinutes()} ${d.getDate()}/${d.getMonth()}`;
+
     const todos = {
       id: uuidv4(),
       text: input,
       completed: false,
+      Dates: date,
     };
 
     if (/[\S\s]+[\S]+/.test(input)) {
