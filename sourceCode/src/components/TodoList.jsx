@@ -6,7 +6,7 @@ const TodoList = ({ todo, removeTodo, completeTask }) => {
   // console.log(items);
 
   return (
-    <div className="w-full h-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 scrollbar-thin scrollbar-track-main scrollbar-thumb-white px-8 overflow-hidden mb-8">
+    <div className="w-full h-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 scrollbar-none px-8 mb-8">
       {todo.map((el, i) => {
         return (
           <Todo
