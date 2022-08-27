@@ -1,6 +1,6 @@
 import "./App.css";
 import Form from "./components/Form";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import TodoList from "./components/TodoList";
 import Test from "./components/Test";
 
@@ -15,9 +15,15 @@ function App() {
     }
   }, []);
 
-  useEffect(() => {
-    console.table(todo);
+  // useEffect(() => {
+  //   console.table(todo);
+  // }, [todo]);
+
+  const memoTodo = useMemo(() => {
+    return [...todo];
   }, [todo]);
+
+  console.log(memoTodo);
 
   const addTodo = (todos) => {
     localStorage.setItem("local", JSON.stringify([todos, ...todo]));
@@ -51,10 +57,10 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col gap-8 bg-back ">
+    <div className="min-h-screen w-full flex flex-col gap-8 bg-secback ">
       <Form todo={todo} setTodo={setTodo} addTodo={addTodo} />
       <TodoList
-        todo={todo}
+        todo={memoTodo}
         setTodo={setTodo}
         removeTodo={removeTodo}
         completeTask={completeTask}

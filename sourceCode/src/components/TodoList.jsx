@@ -10,7 +10,7 @@ const TodoList = ({ todo, removeTodo, completeTask }) => {
       {todo.map((el, i) => {
         return (
           <Todo
-            key={todo.id}
+            key={el.id}
             text={el.text}
             id={el.id}
             completeStatus={el.completed}
