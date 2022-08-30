@@ -1,9 +1,8 @@
 import React from "react";
 import Todo from "./Todo";
 
-const TodoList = ({ todo, removeTodo, completeTask }) => {
+const TodoList = ({ todo, removeTodo, completeTask, crazy, setCrazy }) => {
   // const data = JSON.parse(localStorage.getItem(todo.id));
-  // console.log(items);
 
   return (
     <div className="w-full h-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 scrollbar-none px-8 mb-8">
@@ -17,6 +16,8 @@ const TodoList = ({ todo, removeTodo, completeTask }) => {
             removeTodo={removeTodo}
             completeTask={completeTask}
             date={el.Dates}
+            crazy={crazy}
+            setCrazy={setCrazy}
           />
         );
       })}

@@ -3,7 +3,16 @@ import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
-const Todo = ({ text, id, completeStatus, date, completeTask, removeTodo }) => {
+const Todo = ({
+  text,
+  id,
+  completeStatus,
+  date,
+  completeTask,
+  removeTodo,
+  crazy,
+  setCrazy,
+}) => {
   // const [handleRemove, setHandleRemove] = useState(null);
   // const deleteBtn = useRef();
 
@@ -17,7 +26,14 @@ const Todo = ({ text, id, completeStatus, date, completeTask, removeTodo }) => {
   //     }, 210);
   //   });
   // }, []);
-
+  function getRandomColor() {
+    var letters = "0123456789ABCDEF";
+    var color = "#";
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
   const handleRemove = () => {
     removeTodo(id);
   };
@@ -33,7 +49,11 @@ const Todo = ({ text, id, completeStatus, date, completeTask, removeTodo }) => {
       key={id}
       className="relative bg-secmain w-full min-h-[10rem] p-2 text-md rounded-lg flex flex-col gap-4 justify-between items-baseline transition-colors duration-200 "
       style={{
-        backgroundColor: completeStatus ? "green" : "#202020",
+        backgroundColor: completeStatus
+          ? "green"
+          : crazy
+          ? getRandomColor()
+          : "#202020",
       }}
       onDoubleClick={handleComplete}
     >

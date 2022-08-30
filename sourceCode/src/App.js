@@ -6,6 +6,7 @@ import Test from "./components/Test";
 
 function App() {
   const [todo, setTodo] = useState([]);
+  const [crazy, setCrazy] = useState(false);
 
   useEffect(() => {
     const todos = JSON.parse(localStorage.getItem("local"));
@@ -20,7 +21,7 @@ function App() {
   // }, [todo]);
 
   const memoTodo = useMemo(() => {
-    return [...todo];
+    return todo;
   }, [todo]);
 
   console.log(memoTodo);
@@ -58,12 +59,20 @@ function App() {
 
   return (
     <div className="min-h-screen w-full flex flex-col gap-8 bg-secback ">
-      <Form todo={todo} setTodo={setTodo} addTodo={addTodo} />
+      <Form
+        todo={todo}
+        setTodo={setTodo}
+        addTodo={addTodo}
+        crazy={crazy}
+        setCrazy={setCrazy}
+      />
       <TodoList
         todo={memoTodo}
         setTodo={setTodo}
         removeTodo={removeTodo}
         completeTask={completeTask}
+        crazy={crazy}
+        setCrazy={setCrazy}
       />
       {/* <Test /> */}
     </div>
