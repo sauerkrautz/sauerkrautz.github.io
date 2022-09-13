@@ -2,7 +2,6 @@ import "./App.css";
 import Form from "./components/Form";
 import { useEffect, useMemo, useState } from "react";
 import TodoList from "./components/TodoList";
-import Test from "./components/Test";
 
 function App() {
   const [todo, setTodo] = useState([]);
@@ -23,8 +22,6 @@ function App() {
   const memoTodo = useMemo(() => {
     return todo;
   }, [todo]);
-
-  console.log(memoTodo);
 
   const addTodo = (todos) => {
     localStorage.setItem("local", JSON.stringify([todos, ...todo]));
@@ -57,6 +54,19 @@ function App() {
     return localStorage.setItem("local", JSON.stringify(mappedTodo));
   };
 
+  const editTodo = (id, input) => {
+    const editedTodo = todo.map((e) => {
+      if (e.id === id) {
+        e.text = input;
+      }
+
+      return e;
+    });
+
+    setTodo(editedTodo);
+    localStorage.setItem("local", JSON.stringify(editedTodo));
+  };
+
   return (
     <div className="min-h-screen w-full flex flex-col gap-8 bg-secback ">
       <Form
@@ -71,6 +81,7 @@ function App() {
         setTodo={setTodo}
         removeTodo={removeTodo}
         completeTask={completeTask}
+        editTodo={editTodo}
         crazy={crazy}
         setCrazy={setCrazy}
       />

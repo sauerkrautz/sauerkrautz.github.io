@@ -1,7 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import Input from "./subcomponents/Input";
+import Display from "./subcomponents/Display";
 
 const Todo = ({
   text,
@@ -10,22 +13,13 @@ const Todo = ({
   date,
   completeTask,
   removeTodo,
+  editTodo,
   crazy,
   setCrazy,
 }) => {
-  // const [handleRemove, setHandleRemove] = useState(null);
-  // const deleteBtn = useRef();
+  const [isEditing, setIsEditing] = useState(false);
+  const [input, setInput] = useState("");
 
-  // useEffect(() => {
-  //   deleteBtn.current.addEventListener("click", () => {
-  //     setTimeout(() => {
-  //       const handleRemove = () => {
-  //         removeTodo(id);
-  //       };
-  //       setHandleRemove(handleRemove);
-  //     }, 210);
-  //   });
-  // }, []);
   function getRandomColor() {
     var letters = "0123456789ABCDEF";
     var color = "#";
@@ -34,12 +28,32 @@ const Todo = ({
     }
     return color;
   }
+
+  const toggleEdit = () => {
+    if (isEditing === true) {
+      setIsEditing(false);
+    } else if (isEditing === false) {
+      setIsEditing(true);
+    }
+  };
+
   const handleRemove = () => {
     removeTodo(id);
   };
 
   const handleComplete = () => {
     completeTask(id);
+  };
+
+  const handleInput = (e) => {
+    let text = e.target.value;
+    setInput(text);
+  };
+
+  const handleEdit = (e) => {
+    e.preventDefault();
+    editTodo(id, input);
+    setIsEditing(false);
   };
 
   return (
@@ -57,21 +71,38 @@ const Todo = ({
       }}
       onDoubleClick={handleComplete}
     >
-      <p
+      {/* <p
         className="break-words text-left"
         style={{ color: completeStatus ? "white" : "white" }}
       >
         {text}
-      </p>
+      </p> */}
+      {isEditing ? (
+        <Input
+          handleEdit={handleEdit}
+          handleInput={handleInput}
+          text={text}
+          input={input}
+          setInput={setInput}
+          isEditing={isEditing}
+        />
+      ) : (
+        <Display text={text} completeStatus={completeStatus} />
+      )}
       <div className="w-full flex justify-between items-center">
         <div className="text-gray-500 text-sm">{date}</div>
 
         <button
           className="text-red-500 tracking-wider p-1 rounded-lg text-md font-poppins font-bold"
-          // ref={deleteBtn}
           onClick={handleRemove}
         >
           <FontAwesomeIcon icon={faTrash} />
+        </button>
+        <button
+          className="text-white opacity-70 tracking-wider p-1 rounded-lg text-md font-poppins font-bold"
+          onClick={toggleEdit}
+        >
+          <FontAwesomeIcon icon={faEdit} />
         </button>
       </div>
     </motion.div>

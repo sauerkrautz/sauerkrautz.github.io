@@ -1,7 +1,14 @@
 import React from "react";
 import Todo from "./Todo";
 
-const TodoList = ({ todo, removeTodo, completeTask, crazy, setCrazy }) => {
+const TodoList = ({
+  todo,
+  removeTodo,
+  completeTask,
+  crazy,
+  editTodo,
+  setCrazy,
+}) => {
   // const data = JSON.parse(localStorage.getItem(todo.id));
 
   return (
@@ -16,6 +23,7 @@ const TodoList = ({ todo, removeTodo, completeTask, crazy, setCrazy }) => {
             removeTodo={removeTodo}
             completeTask={completeTask}
             date={el.Dates}
+            editTodo={editTodo}
             crazy={crazy}
             setCrazy={setCrazy}
           />
