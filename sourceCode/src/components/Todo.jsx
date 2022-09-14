@@ -90,7 +90,12 @@ const Todo = ({
         <Display text={text} completeStatus={completeStatus} />
       )}
       <div className="w-full flex justify-between items-center">
-        <div className="text-gray-500 text-[.7rem]">{date}</div>
+        <div
+          className="text-gray-500 text-[.7rem]"
+          style={{ color: completeStatus ? "white" : "rgb(107 114 128" }}
+        >
+          {date}
+        </div>
 
         <div className="flex gap-2 md:gap-4">
           <button
