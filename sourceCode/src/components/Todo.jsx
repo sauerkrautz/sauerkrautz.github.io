@@ -90,20 +90,22 @@ const Todo = ({
         <Display text={text} completeStatus={completeStatus} />
       )}
       <div className="w-full flex justify-between items-center">
-        <div className="text-gray-500 text-sm">{date}</div>
+        <div className="text-gray-500 text-[.7rem]">{date}</div>
 
-        <button
-          className="text-red-500 tracking-wider p-1 rounded-lg text-md font-poppins font-bold"
-          onClick={handleRemove}
-        >
-          <FontAwesomeIcon icon={faTrash} />
-        </button>
-        <button
-          className="text-white opacity-70 tracking-wider p-1 rounded-lg text-md font-poppins font-bold"
-          onClick={toggleEdit}
-        >
-          <FontAwesomeIcon icon={faEdit} />
-        </button>
+        <div className="flex gap-2 md:gap-4">
+          <button
+            className="text-red-500 tracking-wider p-1 rounded-lg text-md font-poppins font-bold"
+            onClick={handleRemove}
+          >
+            <FontAwesomeIcon icon={faTrash} />
+          </button>
+          <button
+            className="text-white opacity-70 tracking-wider p-1 rounded-lg text-md font-poppins font-bold"
+            onClick={toggleEdit}
+          >
+            <FontAwesomeIcon icon={faEdit} />
+          </button>
+        </div>
       </div>
     </motion.div>
   );

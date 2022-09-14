@@ -70,7 +70,7 @@ function App() {
   return (
     <div className="min-h-screen w-full flex flex-col gap-8 bg-secback ">
       <Form
-        todo={todo}
+        todo={memoTodo}
         setTodo={setTodo}
         addTodo={addTodo}
         crazy={crazy}

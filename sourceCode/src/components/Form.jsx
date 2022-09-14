@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
+import CompleteCount from "./CompleteCount";
 
 const Form = ({ todo, addTodo, crazy, setCrazy }) => {
   const d = new Date();
@@ -26,7 +27,7 @@ const Form = ({ todo, addTodo, crazy, setCrazy }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const date = `${d.toLocaleTimeString()}   ${d.toLocaleDateString()}`;
+    const date = `${d.toLocaleTimeString()} ${d.toLocaleDateString()}`;
 
     const todos = {
       id: uuidv4(),
@@ -45,13 +46,14 @@ const Form = ({ todo, addTodo, crazy, setCrazy }) => {
 
   return (
     <div
-      className="w-full flex justify-center items-center"
+      className=" w-full flex  justify-center items-center"
       onDoubleClick={crazyToggle}
     >
       <form
         onSubmit={handleSubmit}
-        className=" w-1/2 md:w-[35%] flex justify-center gap-4 mt-24 pb-4"
+        className=" w-1/2 md:w-[35%] flex flex-col justify-center items-center gap-4 mt-24 pb-4"
       >
+        <CompleteCount todo={todo} />
         <input
           type="text"
           value={input}
